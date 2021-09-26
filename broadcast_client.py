@@ -8,12 +8,14 @@ try:
     port = int(port)
 except:
     print("Failed to convert port string to integer!")
+    os._exit(1)
 
 try: 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect((host, port))
 except:
     print("An error occured connecting! Make sure server is running and the informating you entered is correct!")
+    os._exit(1)
 
 def recieve():
     while True:
