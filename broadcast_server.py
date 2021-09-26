@@ -1,15 +1,23 @@
 import socket
 import threading 
 from datetime import datetime
-import time
-import os 
 
-host = '127.0.0.1' 
-port = 8080
 
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind((host, port))
-server.listen(1)
+
+# host = input("Enter IP Address to use: ")
+host = '0.0.0.0'
+port = input("Enter port to use: ")
+try: 
+    port = int(port)
+except:
+    print("Failed to convert port string to integer!")
+
+try: 
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((host, port))
+    server.listen(1)
+except:
+    print("Error starting server please try again!")
 
 clients = []
 
@@ -33,7 +41,9 @@ def broadcast(message, clients):
 def connect():
     while True:
         client, address = server.accept()
-        client.send("Remote connection established.. Welcome!".encode())
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        client.send(f'Server {current_time}: Remote connection established!'.encode())
         clients.append(client)
 
 
