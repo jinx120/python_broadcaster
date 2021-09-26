@@ -11,6 +11,7 @@ try:
     port = int(port)
 except:
     print("Failed to convert port string to integer!")
+    os._exit(1)
 
 try: 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -18,7 +19,7 @@ try:
     server.listen(1)
 except:
     print("Error starting server please try again!")
-
+    os._exit(1)
 clients = []
 
 def broadcast(message, clients):
