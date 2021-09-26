@@ -1,13 +1,11 @@
 import socket
-import threading 
-import datetime as datetime
 import time
 import os 
 
-port = 8080
 host = input("Enter host address: ")
+port = input("Enter port: ") 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect((host, 8080))
+client.connect((host, port))
 
 def recieve():
     while True:
