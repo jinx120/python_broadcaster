@@ -25,7 +25,6 @@ def broadcast(message, clients):
                 current_time = now.strftime("%H:%M:%S")
                 client.send(f'Server {current_time}: {message}'.encode())
             except:
-                print("removing client")
                 index = clients.index(client)
                 clients.remove(client)
                 client.close()
